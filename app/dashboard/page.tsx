@@ -3,8 +3,9 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { getGradeColor, getGradeLabel, getGradeBg } from "@/lib/airquality";
+import Link from "next/link";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { getGradeColor, getGradeLabel } from "@/lib/airquality";
 
 interface SidoSummary {
   sido: string;
@@ -96,6 +97,12 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-gray-600 hidden sm:block">{session?.user?.email}</span>
+            <Link
+              href="/guestbook"
+              className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 transition"
+            >
+              📖 방명록
+            </Link>
             <button
               onClick={fetchSummary}
               className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 transition"
